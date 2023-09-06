@@ -1,0 +1,2 @@
+repository de nested objelerin property lerini kullanarak veri çekme
+thymleaf @RestController ile çalışmadı @Controller anotasyonu ile çalıştı

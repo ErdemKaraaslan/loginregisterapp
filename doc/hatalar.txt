@@ -1,0 +1,5 @@
+1-The dependencies of some of the beans in the application context form a cycle:
+2-HttpMessageNotReadableException: JSON parse error:
+Cannot deserialize value of type `java.lang.Long` from Object value (token `JsonToken.START_OBJECT`)]
+3-using named parameters for method public abstract but parameter not found in annotated query (syntax hatası yapmışım, defter 15.08.23)
+4-Encountered a duplicated sql alias [ID] during auto-discovery of a native-sql query 16.08.23

@@ -1,4 +1,4 @@
-package com.volantx.registrationlogin.dto;
+package com.volantx.registrationlogin.controller.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

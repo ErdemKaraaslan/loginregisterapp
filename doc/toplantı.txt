@@ -1,0 +1,8 @@
+kullanıcı ayarları tablosu eklenebilir
+örneğin kullanıcı email tipinden bildirim almak istemiyor olabilir .
+takip bildirimi gelmeli mi gelmemeli mi
+takip durumu olduğunda email de gönderilmeli mi gönderilmemeli mi
+
+kullanıcı takip etme
+
+anasayfa ,login, register ekranları

@@ -1,18 +1,16 @@
 spring:
   datasource:
     username: root
-    url: jdbc:mysql://localhost:3306/login_system?allowPublicKeyRetrieval=true&useSSL=false
-    password: Erdemerdem.01
+    url: jdbc:h2:file:/h2-databases/registration-login
+    driverClassName: org.h2.Driver
+    password: '1234'
+  h2:
+    console:
+      enabled: 'true'
   jpa:
-    properties:
-      hibernate:
-        show_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-logging:
-  level:
-    org:
-      hibernate:
-        type: TRACE
-        SQL: DEBUG
+
+
+#spring.datasource.url=jdbc:h2:mem:employeemanager

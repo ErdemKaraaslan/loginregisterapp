@@ -1,0 +1,13 @@
+mesaj göndermek için gereken bilgiler
+
+gönderen userId
+alıcı userId
+message içeriği
+
+yapılacaklar:
+
+gönderen ve alıcı halihazırda var mı? kontrol edilmeli
+userservice e bir id ile gidilip kontrol edilecek, kullanıcı yoksa hata fırlatılacak
+message nesnesi oluşacak save metotları
+sentMessage nesnesi oluşacak save metotları kullanarak kaydedilecek
+receivedMessage nesnesi oluşacak save metotları kullanarak kaydedilecek
