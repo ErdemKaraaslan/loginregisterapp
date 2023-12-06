@@ -33,7 +33,7 @@ public class ReceivedMessageController {
     }
 
     @GetMapping("/{id}")
-    public ReceivedMessageResource getOneReceivedMessageById(@PathVariable Long id) {
+    public ReceivedMessageResource getOneReceivedMessageById(@PathVariable String id) {
         return mapper.modelToResource(service.getOneReceivedMessageById(id));
     }
 

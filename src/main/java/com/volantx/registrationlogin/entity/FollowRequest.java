@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "follow_requests")
-public class FollowRequest {
+public class FollowRequest extends BaseEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @ManyToOne
     @JoinColumn(name = "sender_id")
@@ -36,10 +36,5 @@ public class FollowRequest {
     @Column(name = "request_time")
     private LocalDateTime requestTime;
 
-    public FollowRequest(User senderId, User receiverId, FollowRequestStatus requestStatus, LocalDateTime requestTime) {
-        this.senderId = senderId;
-        this.receiverId = receiverId;
-        this.requestStatus = requestStatus;
-        this.requestTime = requestTime;
-    }
+
 }

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FollowResource {
 
-    private Long id;
+    private String id;
     private UserResource follower;
     private UserResource following;
     private LocalDateTime followTime;

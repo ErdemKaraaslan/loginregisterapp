@@ -1,6 +1,5 @@
 package com.volantx.registrationlogin.controller.resource;
 
-import com.volantx.registrationlogin.entity.User;
 import com.volantx.registrationlogin.enums.NotificationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,9 +14,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class NotificationResource {
 
-    private Long id;
+    private String id;
     private NotificationType notificationType;
-    private UserResource user;
+    private UserResource causingUser;
+    private UserResource receiverUser;
     private String content;
     private LocalDateTime sentTime;
 

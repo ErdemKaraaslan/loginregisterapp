@@ -18,6 +18,6 @@ public interface NotificationMapper {
 
     List<NotificationResource> modelsToResources(final List<Notification> notificationList);
 
-    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "receiverUserId", target = "receiverUser.id")
     Notification dtoToModel(final NotificationDto notificationDto);
 }

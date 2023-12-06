@@ -1,5 +1,6 @@
 package com.volantx.registrationlogin.controller;
 
+import com.volantx.registrationlogin.controller.dto.FollowDto;
 import com.volantx.registrationlogin.controller.dto.NotificationDto;
 import com.volantx.registrationlogin.controller.mapper.NotificationMapper;
 import com.volantx.registrationlogin.controller.resource.NotificationResource;
@@ -24,10 +25,15 @@ public class NotificationController {
         return mapper.modelsToResources(service.getAllNotifications());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{userId}")
+    public List<NotificationResource> getAllNotificationsOfUser(@PathVariable String userId) {
+        return mapper.modelsToResources(service.getAllNotificationsOfUser(userId));
+    }
+
+    /*@GetMapping("/{id}")                 üstteki metodla aynı diye kapattım
     public NotificationResource getOneNotificationById(@PathVariable Long id) {
         return mapper.modelToResource(service.getOneNotificationById(id));
-    }
+    }*/
 
     @PostMapping()
     public NotificationResource saveNotification(@RequestBody NotificationDto notificationDto) {
@@ -44,8 +50,17 @@ public class NotificationController {
 
     //@Transactional
     @DeleteMapping("/delete/{id}")
-    public void deleteNotificationById(@PathVariable Long id) {
+    public void deleteNotificationById(@PathVariable String id) {
         service.deleteNotificationById(id);
     }
 
+    @PostMapping("updateFollowRequestNotificationToInfo")
+    public void updateFollowRequestNotificationToInfo(@RequestBody FollowDto followDto){
+        service.updateFollowRequestNotificationToInfo(followDto);
+    }
+
+    @DeleteMapping("/delete/{causingUserId}/{receiverUserId}")
+    public void deleteNotificationByCausingUserIdAndReceiverUserId(@PathVariable String causingUserId, String receiverUserId) {
+        service.deleteNotificationByCausingUserIdAndReceiverUserId(causingUserId,receiverUserId);
+    }
 }

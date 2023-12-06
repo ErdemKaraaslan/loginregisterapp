@@ -14,11 +14,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "received_messages")
-public class ReceivedMessage {
+public class ReceivedMessage extends BaseEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,11 +37,4 @@ public class ReceivedMessage {
     @Column(name = "seen_time")
     private LocalDateTime seenTime;
 
-    public ReceivedMessage(User user, Message message, boolean isDeleted, boolean isSeen, LocalDateTime seenTime) {
-        this.user = user;
-        this.message = message;
-        this.isDeleted = isDeleted;
-        this.isSeen = isSeen;
-        this.seenTime = seenTime;
-    }
 }

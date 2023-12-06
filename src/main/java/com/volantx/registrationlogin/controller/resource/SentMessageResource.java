@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SentMessageResource {
 
-    private Long id;
+    private String id;
     private UserResource user;
     private MessageResource message;
     private boolean isDeleted;

@@ -3,7 +3,8 @@ package com.volantx.registrationlogin.controller.dto;
 import lombok.Data;
 
 @Data
-public class SaveMessageDto {
+public class MessageSendDto {
+
     private Long senderId;
     private Long receiverId;
     private String messageContent;

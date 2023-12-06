@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ReceivedMessageResource {
 
-    private Long id;
+    private String id;
     private UserResource user;
     private MessageResource message;
     private boolean isDeleted;

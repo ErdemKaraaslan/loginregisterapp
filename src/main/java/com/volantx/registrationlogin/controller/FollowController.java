@@ -4,7 +4,9 @@ import com.volantx.registrationlogin.controller.dto.FollowDto;
 import com.volantx.registrationlogin.controller.mapper.FollowMapper;
 import com.volantx.registrationlogin.controller.resource.FollowResource;
 import com.volantx.registrationlogin.service.FollowService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class FollowController {
     }
 
     @GetMapping("/{id}")
-    public FollowResource getOneFollowById(@PathVariable Long id) {
+    public FollowResource getOneFollowById(@PathVariable String id) {
         return mapper.modelToResource(service.getOneFollowById(id));
     }
 
@@ -34,8 +36,14 @@ public class FollowController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteFollow(@PathVariable("id") Long followId) {
+    public void deleteFollow(@PathVariable("id") String followId) {
         service.deleteFollow(followId);
+    }
+
+    @Transactional
+    @DeleteMapping("/delete/{followerId}/{followingId}")
+    public void deleteFollowByFollowerIdAndFollowingId(@PathVariable String followerId, @PathVariable String followingId) {
+        service.deleteFollowByFollowerIdAndFollowingId(followerId,followingId);
     }
 
 }

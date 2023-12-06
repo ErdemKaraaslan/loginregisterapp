@@ -21,7 +21,7 @@ public class ReceivedMessageService {
 
     }
 
-    public ReceivedMessage getOneReceivedMessageById(Long id) {
+    public ReceivedMessage getOneReceivedMessageById(String id) {
         return repository.findById(id).get();
     }
 

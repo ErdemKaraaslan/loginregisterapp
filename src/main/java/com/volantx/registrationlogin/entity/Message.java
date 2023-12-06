@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "messages")
-public class Message {
+public class Message extends BaseEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @Column(name = "content", nullable=false)
     private String content;
@@ -27,8 +27,5 @@ public class Message {
     @Column(name = "create_time")
     private LocalDateTime createTime;
 
-    public Message(String content, LocalDateTime createTime) {
-        this.content = content;
-        this.createTime = createTime;
-    }
+
 }

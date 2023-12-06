@@ -15,7 +15,7 @@ public interface FollowMapper {
 
     List<FollowResource> modelsToResources(final List<Follow> followList);
 
-    @Mapping(source = "followerId", target = "follower.id")
-    @Mapping(source = "followingId", target = "following.id")
+    @Mapping(source = "senderId", target = "follower.id")
+    @Mapping(source = "receiverId", target = "following.id")
     Follow dtoToModel(final FollowDto followDto);
 }

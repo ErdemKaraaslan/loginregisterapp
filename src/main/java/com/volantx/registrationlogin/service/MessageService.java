@@ -22,7 +22,7 @@ public class MessageService {
 
     }
 
-    public Message getOneMessageById(Long id) {
+    public Message getOneMessageById(String id) {
         return repository.findById(id).get();
     }
 
@@ -47,7 +47,7 @@ public class MessageService {
         return repository.save(message);
     }
 
-    public void deleteMessageById(Long id) {
+    public void deleteMessageById(String id) {
         repository.deleteById(id);
     }
 

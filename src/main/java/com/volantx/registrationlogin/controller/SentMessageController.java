@@ -1,6 +1,6 @@
 package com.volantx.registrationlogin.controller;
 
-import com.volantx.registrationlogin.controller.dto.SaveMessageDto;
+import com.volantx.registrationlogin.controller.dto.MessageSendDto;
 import com.volantx.registrationlogin.controller.dto.SentMessageDto;
 import com.volantx.registrationlogin.controller.mapper.MessageMapper;
 import com.volantx.registrationlogin.controller.mapper.SentMessageMapper;
@@ -24,25 +24,32 @@ public class SentMessageController {
 
 
     @GetMapping()
-    public List<SentMessageResource> getAllMessages(){
+    public List<SentMessageResource> getAllMessages() {
         return mapper.modelsToResources(service.getAllSentMessages());
     }
 
     @GetMapping("/{id}")
-    public SentMessageResource getOneSentMessageById(@PathVariable Long id) {
+    public SentMessageResource getOneSentMessageById(@PathVariable String id) {
         return mapper.modelToResource(service.getOneSentMessageById(id));
     }
 
     @GetMapping("/user/{id}")
-    public List<SentMessageResource> getAllSentMessagesByUser(@PathVariable Long id){
+    public List<SentMessageResource> getAllSentMessagesByUser(@PathVariable String id) {
         return mapper.modelsToResources(service.findSentMessageByUserId(id));
     }
 
     @GetMapping("/users/{sender-id}/{receiver-id}")
-    public List<MessageResource> getSpecificMessages(@PathVariable("sender-id") Long senderId,
-                                                         @PathVariable("receiver-id") Long receiverId){
-        return messageMapper.modelsToResources(service.getSpecificMessages(senderId,receiverId));
+    public List<MessageResource> getSpecificMessages(@PathVariable("sender-id") String senderId,
+                                                     @PathVariable("receiver-id") String receiverId) {
+        return messageMapper.modelsToResources(service.getSpecificMessages(senderId, receiverId));
     }
+    @GetMapping("/users-all-messages/{sender-id}/{receiver-id}")
+    public List<MessageResource> getAllMessagesBetweenTwoPerson(@PathVariable("sender-id") String senderId,
+                                                     @PathVariable("receiver-id") String receiverId) {
+
+        return service.getAllMessagesBetweenTwoPerson(senderId, receiverId);
+    }
+
 
     @PostMapping()
     public SentMessageResource saveSentMessage(@RequestBody SentMessageDto sentMessageDto) {
@@ -51,11 +58,9 @@ public class SentMessageController {
     }
 
     @PostMapping("/send-message")
-    public void sendMessage(@RequestBody SaveMessageDto dto) throws Exception {
+    public void sendMessage(@RequestBody MessageSendDto dto) throws Exception {
         service.sendMessage(dto);
     }
-
-
 
 
 }

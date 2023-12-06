@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "follows")
-public class Follow {
+public class Follow extends BaseEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @ManyToOne
     @JoinColumn(name = "follower_id")
@@ -28,9 +28,4 @@ public class Follow {
     @Column(name = "follow_time")
     private LocalDateTime followTime;
 
-    public Follow(User follower, User following, LocalDateTime followTime) {
-        this.follower = follower;
-        this.following = following;
-        this.followTime = followTime;
-    }
 }

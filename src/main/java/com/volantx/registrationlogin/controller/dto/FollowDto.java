@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class FollowDto {
 
     //private Long id;
-    private Long followerId;
-    private Long followingId;
+    private Long senderId;
+    private Long receiverId;
     //private LocalDateTime followTime;
 }

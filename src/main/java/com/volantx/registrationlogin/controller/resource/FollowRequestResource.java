@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FollowRequestResource {
 
-    private Long id;
+    private String id;
     private Long senderId;
     private Long receiverId;
     private FollowRequestStatus requestStatus;

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/messages")
 public class MessageController {
@@ -25,33 +25,13 @@ public class MessageController {
     private final UserService userService;
     private final MessageMapper mapper;
 
-    @GetMapping("/show-message-page")
-    public String showMessagePage(@RequestParam(name = "userId") Long userId) {
-        log.info("userId: {}", userId);
-        Long senderId = userService.getLoggedInUser().getId();
-        Long receiverId = userId;
-        return "message";
-    }
-
-    @RequestMapping(value="/send-message")
-    public String sendMessageV2() {
-        System.out.println("success");
-        return "message";
-    }
-
-    @PostMapping("/save")
-    public String saveData(@RequestParam("inputData") String inputData, Model model ) {
-        model.addAttribute("message", "Veri kaydedildi: " + inputData);
-        return "message";
-    }
-
     @GetMapping()
     public List<MessageResource> getAllMessages() {
         return mapper.modelsToResources(service.getAllMessages());
     }
 
     @GetMapping("/{id}")
-    public MessageResource getOneMessageById(@PathVariable Long id) {
+    public MessageResource getOneMessageById(@PathVariable String id) {
         return mapper.modelToResource(service.getOneMessageById(id));
     }
 
@@ -68,7 +48,7 @@ public class MessageController {
 
     //@Transactional
     @DeleteMapping("/delete/{id}")
-    public void deleteMessageById(@PathVariable Long id) {
+    public void deleteMessageById(@PathVariable String id) {
         service.deleteMessageById(id);
     }
 

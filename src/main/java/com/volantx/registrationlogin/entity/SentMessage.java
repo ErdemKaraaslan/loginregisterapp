@@ -12,11 +12,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "sent_messages")
-public class SentMessage {
+public class SentMessage extends BaseEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -28,10 +28,4 @@ public class SentMessage {
 
     @Column(name = "is_deleted", nullable=false)
     private boolean isDeleted;
-
-    public SentMessage(User user, Message message, boolean isDeleted) {
-        this.user = user;
-        this.message = message;
-        this.isDeleted = isDeleted;
-    }
 }

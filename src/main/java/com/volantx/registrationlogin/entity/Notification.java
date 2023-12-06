@@ -1,7 +1,5 @@
 package com.volantx.registrationlogin.entity;
 
-import com.volantx.registrationlogin.controller.dto.UserDto;
-import com.volantx.registrationlogin.enums.Gender;
 import com.volantx.registrationlogin.enums.NotificationType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,20 +16,23 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "notifications")
-public class Notification {
+public class Notification extends BaseEntity {
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @Column(name = "notification_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private NotificationType notificationType;
 
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "receiver_user")
+    private User receiverUser;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "causing_user")
+    private User causingUser;
 
     @Column(name = "content")
     private String content;

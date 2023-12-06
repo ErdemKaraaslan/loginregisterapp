@@ -14,12 +14,14 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends BaseEntity {
+
+
     private static final long serialVersionUID = 1L;
 
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;*/
 
     @Column(name = "username", nullable = false, unique = true)
     private String username;
@@ -53,7 +55,7 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")})
     private List<Role> roles = new ArrayList<>();
 
-    @OneToMany(mappedBy = "follower")
+    /*@OneToMany(mappedBy = "follower")
     private List<Follow> followers;
 
     @OneToMany(mappedBy = "following")
@@ -65,9 +67,6 @@ public class User {
     @OneToMany(mappedBy = "receiverId")
     private List<FollowRequest> receivedFollowRequests;
 
-    @OneToMany(mappedBy = "user")
-    private List<Notification> notifications;
-
-
-
+    @OneToMany(mappedBy = "receiverUser")
+    private List<Notification> notifications;*/
 }

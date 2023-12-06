@@ -17,8 +17,8 @@ public class NotificationDto {
 
     private Long id;
     private NotificationType notificationType;
-
-    private Long userId;
+    private Long receiverUserId;
+    private Long causingUserId;
     private String content;
     private LocalDateTime sentTime;
 }

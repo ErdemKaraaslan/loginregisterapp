@@ -1,18 +1,14 @@
 package com.volantx.registrationlogin.controller;
 
-import com.volantx.registrationlogin.controller.dto.FollowDto;
 import com.volantx.registrationlogin.controller.dto.FollowRequestDto;
 import com.volantx.registrationlogin.controller.mapper.FollowMapper;
 import com.volantx.registrationlogin.controller.mapper.FollowRequestMapper;
 import com.volantx.registrationlogin.controller.resource.FollowRequestResource;
 import com.volantx.registrationlogin.controller.resource.FollowResource;
-import com.volantx.registrationlogin.entity.Follow;
-import com.volantx.registrationlogin.entity.FollowRequest;
 import com.volantx.registrationlogin.enums.FollowRequestStatus;
 import com.volantx.registrationlogin.service.FollowRequestService;
-import com.volantx.registrationlogin.service.FollowService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,27 +24,36 @@ public class FollowRequestController {
 
 
     @GetMapping()
-    public List<FollowRequestResource> getAllFollowRequests(){
+    public List<FollowRequestResource> getAllFollowRequests() {
         return mapper.modelsToResources(service.getAllFollowRequests());
     }
 
     @GetMapping("/{id}")
-    public FollowRequestResource getOneFollowRequestById(@PathVariable Long id) {
+    public FollowRequestResource getOneFollowRequestById(@PathVariable String id) {
         return mapper.modelToResource(service.getOneFollowRequestById(id));
     }
 
+    @GetMapping("/{senderId}/{receiverId}")
+    public FollowRequestResource findFollowRequestBySenderIdAndReceiverId(@PathVariable(name = "senderId") String senderId,
+                                                                          @PathVariable(name = "receiverId") String receiverId) {
+        return mapper.modelToResource(service.findFollowRequestBySenderIdAndReceiverId(senderId, receiverId));
+    }
+
     @PostMapping()
-    public FollowRequestResource saveFollowRequest(@RequestBody FollowRequestDto followRequestDto) throws Exception {
-        return mapper.modelToResource(service.saveFollowRequest(followRequestDto.getSenderId(), followRequestDto.getReceiverId()));
+    public FollowRequestResource sendFollowRequest(@RequestBody FollowRequestDto followRequestDto) throws Exception {
+        return mapper.modelToResource(service.sendFollowRequest(followRequestDto));
     }
 
-    @PostMapping("/conclude/{requestId}")
-    public FollowResource concludeFollowRequest(@PathVariable(name = "requestId") Long requestId,
-                                      @RequestParam(name = "status") FollowRequestStatus status) {
-        return followMapper.modelToResource(service.concludeFollowRequest(requestId,status));
+    @PostMapping("/accept/{senderId}/{receiverId}")
+    public void acceptFollowRequest(@PathVariable String senderId, @PathVariable String receiverId) {
+        service.acceptFollowRequest(senderId, receiverId);
     }
 
-
+    @Transactional
+    @DeleteMapping("/delete/{senderId}/{receiverId}")
+    public void deleteFollowRequestBySenderIdAndReceiverId(@PathVariable String senderId, @PathVariable String receiverId) {
+        service.deleteFollowRequestBySenderIdAndReceiverId(senderId, receiverId);
+    }
 
 
 }

@@ -1,10 +1,14 @@
 package com.volantx.registrationlogin.controller.resource;
 
+import com.volantx.registrationlogin.entity.Follow;
+import com.volantx.registrationlogin.entity.Notification;
 import com.volantx.registrationlogin.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,7 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserResource {
 
-    private Long id;
+    private String id;
 
     private String username;
 
@@ -27,4 +31,11 @@ public class UserResource {
     private Gender gender;
 
     private String about;
+
+   // private List<Follow> followers;
+
+   // private List<Follow> followings;
+
+   // private List<Notification> notifications;
+
 }

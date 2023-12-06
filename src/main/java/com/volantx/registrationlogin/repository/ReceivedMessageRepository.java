@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ReceivedMessageRepository extends JpaRepository<ReceivedMessage, Long> {
+public interface ReceivedMessageRepository extends JpaRepository<ReceivedMessage, String> {
 
 
     @Query(value = "SELECT * FROM RECEIVED_MESSAGES WHERE user_id = :id", nativeQuery = true)

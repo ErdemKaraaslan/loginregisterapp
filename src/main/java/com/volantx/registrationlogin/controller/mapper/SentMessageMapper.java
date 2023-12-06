@@ -1,10 +1,7 @@
 package com.volantx.registrationlogin.controller.mapper;
 
-import com.volantx.registrationlogin.controller.dto.ReceivedMessageDto;
 import com.volantx.registrationlogin.controller.dto.SentMessageDto;
-import com.volantx.registrationlogin.controller.resource.ReceivedMessageResource;
 import com.volantx.registrationlogin.controller.resource.SentMessageResource;
-import com.volantx.registrationlogin.entity.ReceivedMessage;
 import com.volantx.registrationlogin.entity.SentMessage;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

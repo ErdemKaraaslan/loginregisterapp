@@ -13,7 +13,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class MessageResource {
 
-    private Long id;
+    private String id;
     private String content;
     private LocalDateTime createTime;
+    private Long senderId;
+    private Long receiverId;
 }
