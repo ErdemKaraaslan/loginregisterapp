@@ -22,6 +22,7 @@ public class WebSecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .formLogin().disable()
                 .securityMatcher("/**")
+                .headers(headers -> headers.frameOptions().disable())
                 .authorizeHttpRequests(registry -> registry
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()

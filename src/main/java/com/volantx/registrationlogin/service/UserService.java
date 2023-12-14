@@ -6,9 +6,13 @@ import com.volantx.registrationlogin.entity.User;
 import com.volantx.registrationlogin.repository.RoleRepository;
 import com.volantx.registrationlogin.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +25,10 @@ public class UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final FollowService followService;
+
+
+
+
 
     public List<User> findAllUsers() {
         return userRepository.findAll();
@@ -67,16 +75,24 @@ public class UserService {
     }
 
     public User findUserByEmailAndPassword(String email, String password) throws Exception {
+
+
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         if (email.isEmpty() || password.isEmpty()) {
             throw new Exception("email ve password dolu olmalıdır");
         }
 
-        Optional<User> user = userRepository.findByEmailAndPassword(email, password);
+        Optional<User> user = Optional.ofNullable(userRepository.findByEmail(email));
+
         if (user.isPresent()) {
-            return user.get();
-        } else {
-            throw new Exception("email veya parola hatalı");
+
+            if (passwordEncoder.matches((password),user.get().getPassword())){
+                return user.get();
+            }
         }
+
+        throw new Exception("email veya parola hatalı");
     }
 
 
@@ -137,13 +153,17 @@ public class UserService {
             throw new Exception("Bu email ile bir kullanıcı zaten vardır.");
         } else {
 
+
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = bCryptPasswordEncoder.encode(dto.getPassword());
+
             User user = new User();
             user.setId(dto.getId());
             user.setUsername(dto.getUsername());
             user.setFirstName(dto.getFirstName());
             user.setLastName(dto.getLastName());
             user.setEmail(dto.getEmail());
-            user.setPassword(dto.getPassword());
+            user.setPassword(encodedPassword);
             user.setPhone(dto.getPhone());
             user.setGender(dto.getGender());
             user.setAbout(dto.getAbout());
